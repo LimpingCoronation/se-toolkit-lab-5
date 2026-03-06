@@ -19,6 +19,7 @@ from app.models.learner import Learner
 router = APIRouter()
 
 # Some changes
+# Maksim Spasibo, bro
 
 
 @router.get("/scores")
