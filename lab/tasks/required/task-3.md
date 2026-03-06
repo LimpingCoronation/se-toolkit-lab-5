@@ -25,9 +25,10 @@ An AI coding agent can help with the `Chart.js` integration.
   - [1.5. Add navigation](#15-add-navigation)
   - [1.6. Run the type checker](#16-run-the-type-checker)
   - [1.7. Verify locally](#17-verify-locally)
-  - [1.8. Deploy to the VM](#18-deploy-to-the-vm)
-  - [1.9. Commit your work](#19-commit-your-work)
+  - [1.8. Commit and push your work](#18-commit-and-push-your-work)
+  - [1.9. Deploy to the VM](#19-deploy-to-the-vm)
   - [1.10. Finish the task](#110-finish-the-task)
+  - [1.11. Check the task using the autochecker](#111-check-the-task-using-the-autochecker)
 - [2. Acceptance criteria](#2-acceptance-criteria)
 
 ## 1. Steps
@@ -169,12 +170,9 @@ Title: `[Task] Dashboard Front-end`
 
    1. Open the file [`frontend/.env.example`](../../../frontend/.env.example) ([how to open a file](../../../wiki/vs-code.md#open-the-file)).
    2. Copy it to `frontend/.env`.
-   3. Set `VITE_API_TARGET` to the URL of your back-end API, for example `http://<your-vm-ip-address>:<caddy-port>`.
+   3. Set `VITE_API_TARGET` to the URL of your back-end API, for example `http://<your-vm-ip-address>:42002`.
 
-      Replace:
-
-      - [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address)
-      - [`<caddy-port>`](../../../wiki/caddy.md#caddy-port)
+      If you changed `CADDY_PORT` in `.env.docker.secret`, use your value instead of `42002`.
 
 3. To install dependencies and start the dev server,
 
@@ -194,12 +192,27 @@ Title: `[Task] Dashboard Front-end`
    > Make sure you have run `POST /pipeline/sync` at least once (from Task 1)
    > so there is data for the analytics endpoints to return.
 
-### 1.8. Deploy to the VM
+### 1.8. Commit and push your work
 
-1. [Connect to your VM](../../../wiki/vm.md#connect-to-the-vm).
-2. To deploy the updated front-end,
+1. [Commit](../../../wiki/git-workflow.md#commit-changes) your changes.
 
-   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+   Use this commit message:
+
+   ```text
+   feat: add analytics dashboard with charts
+   ```
+
+2. Push your task branch:
+
+   ```terminal
+   git push -u origin <task-branch>
+   ```
+
+   Replace [`<task-branch>`](../../../wiki/git-workflow.md#task-branch).
+
+### 1.9. Deploy to the VM
+
+1. On your VM, pull your branch and restart the services:
 
    ```terminal
    cd se-toolkit-lab-5
@@ -209,12 +222,9 @@ Title: `[Task] Dashboard Front-end`
 
    Replace [`<task-branch>`](../../../wiki/git-workflow.md#task-branch).
 
-3. Open in a browser: `http://<your-vm-ip-address>:<caddy-port>`.
+2. Open in a browser: `http://<your-vm-ip-address>:42002`.
 
-   Replace:
-
-   - [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address)
-   - [`<caddy-port>`](../../../wiki/caddy.md#caddy-port)
+   If you changed `CADDY_PORT` in `.env.docker.secret`, use your value instead of `42002`.
 
    Connect with your API key and verify the Dashboard page shows charts.
 
@@ -230,20 +240,14 @@ Title: `[Task] Dashboard Front-end`
 
    </details>
 
-### 1.9. Commit your work
-
-1. [Commit](../../../wiki/git-workflow.md#commit) your changes.
-
-   Use this commit message:
-
-   ```text
-   feat: add analytics dashboard with charts
-   ```
-
 ### 1.10. Finish the task
 
 1. [Create a PR](../../../wiki/git-workflow.md#create-a-pr-to-the-main-branch-in-your-fork) with your changes.
 2. [Get a PR review](../../../wiki/git-workflow.md#get-a-pr-review) and complete the subsequent steps in the `Git workflow`.
+
+### 1.11. Check the task using the autochecker
+
+[Check the task using the autochecker `Telegram` bot](../../../wiki/autochecker.md#check-the-task-using-the-autochecker-bot).
 
 ---
 
